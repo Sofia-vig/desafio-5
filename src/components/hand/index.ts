@@ -35,14 +35,15 @@ customElements.define(
       const style = document.createElement("style");
       style.innerHTML = `
       .${this.jugada}{
-        width:${this.size == "big" ? "100px" : ""};
-        position:absolute;
-        bottom:-4;
+        ${this.size == "big" ? "width:100px" : ""};
+        ${this.jugada == "papel" && this.size == "big" ? "width:120px" : ""};
+        position:fixed;
+        bottom:0;
         ${this.jugada == "piedra" ? "left:20px" : ""};
         ${this.jugada == "tijera" ? "right:20px" : ""};
-        ${this.jugada == "papel" ? "left:140px" : ""};
-
-      }    
+        ${this.jugada == "papel" ? "left:150px" : ""};
+        ${this.jugada == "papel" && this.size == "big" ? "left:130px" : ""};
+        }    
       .computer{
         top:0;
         left:120px;
