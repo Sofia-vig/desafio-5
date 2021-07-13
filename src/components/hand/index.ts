@@ -37,7 +37,6 @@ customElements.define(
       .${this.jugada}{
         ${this.size == "big" ? "width:100px" : ""};
         position:absolute;
-        bottom:-5;
         ${this.jugada == "piedra" ? "left:20px" : ""};
         ${this.jugada == "tijera" ? "right:20px" : ""};
         ${this.jugada == "papel" ? "left:145px" : ""};

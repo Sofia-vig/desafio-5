@@ -29,7 +29,7 @@ function move(div) {
       const randomPosition = Math.floor(Math.random() * 3);
       const computerMove = moves[randomPosition];
       const jugada = c.shadowRoot.querySelector(`.${e.detail.jugada}`);
-      jugada.style.top = "400px";
+      jugada.style.top = "350px";
       const whoWins = state.whoWins(myMove, computerMove);
 
       state.setMove({ myPlay: myMove, computerPlay: computerMove }, whoWins);

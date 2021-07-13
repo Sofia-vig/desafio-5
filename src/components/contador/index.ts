@@ -9,7 +9,7 @@ customElements.define(
       const style = document.createElement("style");
       style.innerHTML = `
       .container-contador{
-          height:480px;
+          height:400px;
           display:flex;
           justify-content:center;
           align-items:center;
