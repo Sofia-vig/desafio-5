@@ -36,14 +36,13 @@ customElements.define(
       style.innerHTML = `
       .${this.jugada}{
         ${this.size == "big" ? "width:100px" : ""};
-        ${this.jugada == "papel" && this.size == "big" ? "width:120px" : ""};
-        position:fixed;
-        bottom:0;
+        position:absolute;
+        bottom:-5;
         ${this.jugada == "piedra" ? "left:20px" : ""};
         ${this.jugada == "tijera" ? "right:20px" : ""};
-        ${this.jugada == "papel" ? "left:150px" : ""};
-        ${this.jugada == "papel" && this.size == "big" ? "left:130px" : ""};
-        }    
+        ${this.jugada == "papel" ? "left:140px" : ""};
+
+      }    
       .computer{
         top:0;
         left:120px;
