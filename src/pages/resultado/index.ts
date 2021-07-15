@@ -7,19 +7,12 @@ function getData() {
   const currentState = state.getState();
   const currentGame = currentState.currentGame;
   const whoWins = state.whoWins(currentGame.myPlay, currentGame.computerPlay);
-  const history = JSON.parse(localStorage.getItem("saved"));
-
-  var countYou = history.filter((element) => {
-    return element.whowins == "you";
-  });
-  var countComputer = history.filter((element) => {
-    return element.whowins == "computadora";
-  });
+  const history = state.getScore();
 
   const result = {
     whoWins,
-    countYou,
-    countComputer,
+    countYou: history.countYou,
+    countComputer: history.countComputer,
   };
 
   return result;
@@ -27,6 +20,8 @@ function getData() {
 
 export function pageResultado(params) {
   const object = getData();
+  console.log(object.countComputer, object.countYou);
+
   state.setMove({ myPlay: "", computerPlay: "" }, "");
   const style = document.createElement("style");
   style.innerHTML = `
@@ -61,17 +56,17 @@ export function pageResultado(params) {
   
   `;
 
-  var countYou = object.countYou.length;
-  var countComputer = object.countComputer.length;
+  var countYou = object.countYou;
+  var countComputer = object.countComputer;
   const div = document.createElement("div");
   div.className = "all";
   div.style.backgroundImage =
     object.whoWins == "you"
       ? `url('${backgroundWin}'`
       : `url('${backgroundLose}'`;
-  if (object.whoWins == "you") {
-    div.innerHTML = `
-    <result-component who="win"></result-component>
+
+  div.innerHTML = `
+    <result-component who="${object.whoWins}"></result-component>
     <div class="score">
     <h2 class="title">Score</h2>
     <h3 class="subtitle you">Vos:${countYou}</h3>
@@ -79,29 +74,6 @@ export function pageResultado(params) {
     </div>
     <button-component value="Volver a jugar"></button-component>
     `;
-    countYou++;
-  } else if (object.whoWins == "computadora") {
-    div.innerHTML = `
-    <result-component who="loser"></result-component>
-    <div class="score">
-    <h2 class="title">Score</h2>
-    <h3 class="subtitle you">Vos:${countYou}</h3>
-    <h3 class="subtitle computer">Computadora:${countComputer}</h3>
-    </div>
-    <button-component value="Volver a jugar"></button-component>
-    `;
-    countComputer++;
-  } else {
-    div.innerHTML = `
-    <result-component who="empate"></result-component>
-    <div class="score">
-    <h2 class="title">Score</h2>
-    <h3 class="subtitle you">Vos:${countYou}</h3>
-    <h3 class="subtitle computer">Computadora:${countComputer}</h3>
-    </div>
-    <button-component value="Volver a jugar"></button-component>
-    `;
-  }
 
   div.appendChild(style);
   const button = div.querySelector("button-component");

@@ -6,6 +6,18 @@ const state = {
     },
     history: JSON.parse(localStorage.getItem("saved")) || [],
   },
+
+  getScore() {
+    const history = JSON.parse(localStorage.getItem("saved"));
+    var computer = 0;
+    var you = 0;
+    history.forEach((element) => {
+      element.whowins == "you" ? you++ : "";
+      element.whowins == "computadora" ? computer++ : "";
+    });
+    return { countYou: you, countComputer: computer };
+  },
+
   setMove(move, whowins) {
     this.data.history.push({ move, whowins });
     const currentState = this.getState();

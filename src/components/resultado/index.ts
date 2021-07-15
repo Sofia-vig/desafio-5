@@ -13,9 +13,9 @@ customElements.define(
     }
     connectedCallback() {
       this.who = this.getAttribute("who");
-      if (this.who == "win") {
+      if (this.who == "you") {
         this.text = "Ganaste";
-      } else if (this.who == "loser") {
+      } else if (this.who == "computadora") {
         this.text = "Perdiste";
       } else {
         this.text = "Empate";
