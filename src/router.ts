@@ -7,7 +7,7 @@ import { pageResultado } from "./pages/resultado";
 //Routes
 const routes = [
   {
-    path: /\/desafio-5/,
+    path: /\/game/,
     component: pageInicio,
   },
   {
